@@ -44,12 +44,34 @@ describe('SignUpForm.vue', () => {
       expect(signUpForm.vm.emailIsInvalid).toBe(false)
     });
 
-    test('Email field wrapper has error class when name field is invalid', () => {
+    test('Email field wrapper has error class when email field is invalid', () => {
       const emailInputWrapper = signUpForm.find('.form-input.email')
 
       signUpForm.vm.email = 'invalid.email@123,456'
 
       expect(emailInputWrapper.classes()).toContain('invalid')
+    })
+  })
+
+  describe('Phonenumber Input Field', () => {
+    test('phoneNumberIsInvalid is `true` when phoneNumber model does not match phonenumber regex pattern', () => {
+      signUpForm.vm.phoneNumber = '123-12345'
+
+      expect(signUpForm.vm.phoneNumberIsInvalid).toBe(true)
+    });
+
+    test('phoneNumberIsInvalid is `false` when phoneNumber model matches phonenumber regex pattern', () => {
+      signUpForm.vm.phoneNumber = '123-456-7890'
+
+      expect(signUpForm.vm.phoneNumberIsInvalid).toBe(false)
+    });
+
+    test('Phonenumber field wrapper has error class when phoneNumber field is invalid', () => {
+      const phoneNumberInputWrapper = signUpForm.find('.form-input.phonenumber')
+
+      signUpForm.vm.phoneNumber = '123-12345'
+
+      expect(phoneNumberInputWrapper.classes()).toContain('invalid')
     })
   })
 })
