@@ -4,13 +4,13 @@
       <input type="text" v-model="name" placeholder="Name">
       <span v-show="nameIsInvalid">Invalid Name</span>
     </div>
+    <div class="form-input email" v-bind:class="{ 'invalid': emailIsInvalid }">
+      <input type="email" name="email" v-model="email" placeholder="Email">
+      <span v-show="emailIsInvalid">Invalid Email</span>
+    </div>
     <div class="form-input phonenumber">
       <input type="phonenumber" name="phonenumber" v-model="phoneNumber" placeholder="Phonenumber">
       <!-- <span>Invalid Phone Number</span> -->
-    </div>
-    <div class="form-input email">
-      <input type="email" name="email" v-model="email" placeholder="Email">
-      <!-- <span>Invalid Email</span> -->
     </div>
     <div class="form-input password">
       <input type="password" name="password" v-model="password" placeholder="Password">
@@ -39,6 +39,11 @@ export default {
   computed: {
     nameIsInvalid() {
       return this.name && this.name.length < 3
+    },
+    emailIsInvalid() {
+      const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+
+      return this.email && !emailRegex.test(this.email)
     }
   },
   methods: {

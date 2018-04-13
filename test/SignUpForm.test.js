@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import SignUpForm from '../src/components/SignUpForm.vue'
 
 
-describe('SignUpForm,vue', () => {
+describe('SignUpForm.vue', () => {
   let signUpForm
 
   beforeEach(() => {
@@ -28,6 +28,28 @@ describe('SignUpForm,vue', () => {
       signUpForm.vm.name = 'ab'
 
       expect(nameInputWrapper.classes()).toContain('invalid')
+    })
+  })
+
+  describe('Email Input Field', () => {
+    test('emailIsInvalid is `true` when email model does not match email regex pattern', () => {
+      signUpForm.vm.email = 'invalid.email@123,456'
+
+      expect(signUpForm.vm.emailIsInvalid).toBe(true)
+    });
+
+    test('emailIsInvalid is `false` when email model matches email regex pattern', () => {
+      signUpForm.vm.email = 'valid.email@example.com'
+
+      expect(signUpForm.vm.emailIsInvalid).toBe(false)
+    });
+
+    test('Email field wrapper has error class when name field is invalid', () => {
+      const emailInputWrapper = signUpForm.find('.form-input.email')
+
+      signUpForm.vm.email = 'invalid.email@123,456'
+
+      expect(emailInputWrapper.classes()).toContain('invalid')
     })
   })
 })
