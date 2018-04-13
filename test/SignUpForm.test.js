@@ -96,4 +96,29 @@ describe('SignUpForm.vue', () => {
       expect(passwordInputWrapper.classes()).toContain('invalid')
     })
   })
+
+  describe('Password Confirmation Input Field', () => {
+    test('passwordConfirmationIsInvalid is `true` when passwordConfirmation model is invalid', () => {
+      signUpForm.vm.password = '1ValidPassword!'
+      signUpForm.vm.passwordConfirmation = 'inValidPassword'
+
+      expect(signUpForm.vm.passwordConfirmationIsInvalid).toBe(true)
+    });
+
+    test('passwordConfirmationIsInvalid is `false` when passwordConfirmation model is valid', () => {
+      signUpForm.vm.password = '1ValidPassword!'
+      signUpForm.vm.passwordConfirmation = '1ValidPassword!'
+
+      expect(signUpForm.vm.passwordConfirmationIsInvalid).toBe(false)
+    });
+
+    test('Password field wrapper has error class when passwordConfirmation field is invalid', () => {
+      const passwordConfirmationInputWrapper = signUpForm.find('.form-input.password-confirmation')
+
+      signUpForm.vm.password = '1ValidPassword!'
+      signUpForm.vm.passwordConfirmation = 'inValidPassword'
+
+      expect(passwordConfirmationInputWrapper.classes()).toContain('invalid')
+    })
+  })
 })

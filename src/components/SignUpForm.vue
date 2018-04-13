@@ -24,10 +24,10 @@
       <input type="password" name="password" v-model="password" placeholder="Password">
       <span v-show="passwordIsInvalid">Invalid Password</span>
     </div>
-    <div class="form-input password-confirmation">
+    <div class="form-input password-confirmation" v-bind:class="{ 'invalid': passwordConfirmationIsInvalid }">
       <label for="passwordConfirmation">Password Confirmation</label>
       <input type="password" name="password-confirmation" v-model="passwordConfirmation" placeholder="Password Confirmation">
-      <!-- <span>Passwords Do Not Match</span> -->
+      <span v-show="passwordConfirmationIsInvalid">Passwords Do Not Match</span>
     </div>
     <button type="submit">Submit</button>
   </form>
@@ -64,6 +64,9 @@ export default {
       const passwordRegex = new RegExp(/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/)
 
       return this.password && !passwordRegex.test(this.password)
+    },
+    passwordConfirmationIsInvalid() {
+      return (this.password && this.passwordConfirmation) && this.password !== this.passwordConfirmation
     }
   },
   methods: {
