@@ -10,13 +10,13 @@ describe('SignUpForm.vue', () => {
   })
 
   describe('Name Input Field', () => {
-    test('nameIsInvalid is `false` when name model exists and is 3 or more charaters', () => {
+    test('nameIsInvalid is `false` when name model model is valid', () => {
       signUpForm.vm.name = 'abc'
 
       expect(signUpForm.vm.nameIsInvalid).toBe(false)
     })
 
-    test('nameIsInvalid is `true` when name model is empty or less than 3 charaters', () => {
+    test('nameIsInvalid is `true` when name model is invalid', () => {
       signUpForm.vm.name = 'ab'
 
       expect(signUpForm.vm.nameIsInvalid).toBe(true)
@@ -32,13 +32,13 @@ describe('SignUpForm.vue', () => {
   })
 
   describe('Email Input Field', () => {
-    test('emailIsInvalid is `true` when email model does not match email regex pattern', () => {
+    test('emailIsInvalid is `true` when email model is invalid', () => {
       signUpForm.vm.email = 'invalid.email@123,456'
 
       expect(signUpForm.vm.emailIsInvalid).toBe(true)
     });
 
-    test('emailIsInvalid is `false` when email model matches email regex pattern', () => {
+    test('emailIsInvalid is `false` when email model is valid', () => {
       signUpForm.vm.email = 'valid.email@example.com'
 
       expect(signUpForm.vm.emailIsInvalid).toBe(false)
@@ -54,13 +54,13 @@ describe('SignUpForm.vue', () => {
   })
 
   describe('Phonenumber Input Field', () => {
-    test('phoneNumberIsInvalid is `true` when phoneNumber model does not match phonenumber regex pattern', () => {
+    test('phoneNumberIsInvalid is `true` when phoneNumber model is invalid', () => {
       signUpForm.vm.phoneNumber = '123-12345'
 
       expect(signUpForm.vm.phoneNumberIsInvalid).toBe(true)
     });
 
-    test('phoneNumberIsInvalid is `false` when phoneNumber model matches phonenumber regex pattern', () => {
+    test('phoneNumberIsInvalid is `false` when phoneNumber model is valid', () => {
       signUpForm.vm.phoneNumber = '123-456-7890'
 
       expect(signUpForm.vm.phoneNumberIsInvalid).toBe(false)
