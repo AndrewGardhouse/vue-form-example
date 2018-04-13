@@ -61,7 +61,7 @@ export default {
     },
     passwordIsInvalid() {
       // password must contain 8 characters, 1 uppercase character, 1 lowercase character, 1 number, and one special character
-      const passwordRegex = new RegExp(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})/)
+      const passwordRegex = new RegExp(/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/)
 
       return this.password && !passwordRegex.test(this.password)
     }
