@@ -15,10 +15,14 @@
       <input type="phonenumber" name="phonenumber" v-model="phoneNumber" placeholder="Phonenumber">
       <span v-show="phoneNumberIsInvalid">Invalid Phone Number</span>
     </div>
-    <div class="form-input password">
-      <label for="password">Password</label>
+    <div class="form-input password" v-bind:class="{ 'invalid': passwordIsInvalid }">
+      <label for="password">
+        Password
+        <br>
+        <small>* password must contain 8 characters, 1 uppercase character, 1 lowercase character, 1 number, and one special character</small>
+      </label>
       <input type="password" name="password" v-model="password" placeholder="Password">
-      <!-- <span>Invalid Password</span> -->
+      <span v-show="passwordIsInvalid">Invalid Password</span>
     </div>
     <div class="form-input password-confirmation">
       <label for="passwordConfirmation">Password Confirmation</label>
@@ -54,6 +58,12 @@ export default {
       const phoneNumberRegex = new RegExp(/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/)
 
       return this.phoneNumber && !phoneNumberRegex.test(this.phoneNumber)
+    },
+    passwordIsInvalid() {
+      // password must contain 8 characters, 1 uppercase character, 1 lowercase character, 1 number, and one special character
+      const passwordRegex = new RegExp(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})/)
+
+      return this.password && !passwordRegex.test(this.password)
     }
   },
   methods: {

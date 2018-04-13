@@ -74,4 +74,26 @@ describe('SignUpForm.vue', () => {
       expect(phoneNumberInputWrapper.classes()).toContain('invalid')
     })
   })
+
+  describe('Password Input Field', () => {
+    test('passwordIsInvalid is `true` when password model is invalid', () => {
+      signUpForm.vm.password = 'invalidpassword'
+
+      expect(signUpForm.vm.passwordIsInvalid).toBe(true)
+    });
+
+    test('passwordIsInvalid is `false` when password model is valid', () => {
+      signUpForm.vm.password = '1ValidPassword!'
+
+      expect(signUpForm.vm.passwordIsInvalid).toBe(false)
+    });
+
+    test('Password field wrapper has error class when password field is invalid', () => {
+      const passwordInputWrapper = signUpForm.find('.form-input.password')
+
+      signUpForm.vm.password = 'invalidpassword'
+
+      expect(passwordInputWrapper.classes()).toContain('invalid')
+    })
+  })
 })
