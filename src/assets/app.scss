@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: #FFFAF0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+button {
+  outline: none;
+  box-shadow: none;
+  border: 1px transparent black;
+  border-radius: 5px;
+  background: white;
+  padding: 0.5rem 0.75rem;
+}
+
+.signup-form {
+  margin: 0 35%;
+  .form-input {
+    input {
+      outline: none;
+      font-size: 16px;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.5rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+  }
+}
