@@ -1,5 +1,5 @@
 <template>
-  <form class="signup-form" v-on:submit.prevent="sumbmitForm">
+  <form class="signup-form" v-on:submit.prevent="submitForm">
     <div class="form-input name" v-bind:class="{ 'invalid': nameIsInvalid }">
       <label for="name">Name</label>
       <input type="text" v-model="name" placeholder="Name">
@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    sumbmitForm() {
+    submitForm() {
       console.log('submit form');
     }
   }
