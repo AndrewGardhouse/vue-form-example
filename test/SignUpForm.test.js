@@ -180,6 +180,19 @@ describe('SignUpForm.vue', () => {
       expect(signUpForm.find('.form-submit-error').exists()).toBe(true)
     })
 
+    test('Successful form submit shows Sign up success message', () => {
+      signUpForm.vm.name = 'Valid Name'
+      signUpForm.vm.email = 'valid@email.com'
+      signUpForm.vm.phoneNumber = '123-123-5123'
+      signUpForm.vm.password = 'Password1!'
+      signUpForm.vm.passwordConfirmation = 'Password1!'
+
+      signUpFormElement.trigger('submit')
+
+      expect(signUpForm.vm.showFormError).toBe(false)
+      expect(signUpForm.find('.signup-form-success').exists()).toBe(true)
+    })
+
     test('resetForm() is triggered on input change', () => {
       const nameInput = signUpForm.find('.form-input.name > input')
 
