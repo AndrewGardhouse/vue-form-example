@@ -2,17 +2,17 @@
   <form class="signup-form" v-on:submit.prevent="submitForm">
     <div class="form-input name" v-bind:class="{ 'invalid': nameIsInvalid }">
       <label for="name">Name</label>
-      <input type="text" v-model="name" placeholder="Name" v-on:keydown.prevent="resetForm">
+      <input type="text" v-model="name" placeholder="Name" v-on:keydown="resetForm">
       <span class="error-message" v-if="nameIsInvalid">Invalid Name</span>
     </div>
     <div class="form-input email" v-bind:class="{ 'invalid': emailIsInvalid }">
       <label for="email">Email</label>
-      <input type="email" name="email" v-model="email" placeholder="Email" v-on:keydown.prevent="resetForm">
+      <input type="email" name="email" v-model="email" placeholder="Email" v-on:keydown="resetForm">
       <span class="error-message" v-if="emailIsInvalid">Invalid Email</span>
     </div>
     <div class="form-input phonenumber" v-bind:class="{ 'invalid': phoneNumberIsInvalid }">
       <label for="phoneNumber">Phonenumber</label>
-      <input type="phonenumber" name="phonenumber" v-model="phoneNumber" placeholder="Phonenumber" v-on:keydown.prevent="resetForm">
+      <input type="phonenumber" name="phonenumber" v-model="phoneNumber" placeholder="Phonenumber" v-on:keydown="resetForm">
       <span class="error-message" v-if="phoneNumberIsInvalid">Invalid Phone Number</span>
     </div>
     <div class="form-input password" v-bind:class="{ 'invalid': passwordIsInvalid }">
@@ -21,12 +21,12 @@
         <br>
         <small>* password must contain 8 characters, 1 uppercase character, 1 lowercase character, 1 number, and one special character</small>
       </label>
-      <input type="password" name="password" v-model="password" placeholder="Password" v-on:keydown.prevent="resetForm">
+      <input type="password" name="password" v-model="password" placeholder="Password" v-on:keydown="resetForm">
       <span class="error-message" v-if="passwordIsInvalid">Invalid Password</span>
     </div>
     <div class="form-input password-confirmation" v-bind:class="{ 'invalid': passwordConfirmationIsInvalid }">
       <label for="passwordConfirmation">Password Confirmation</label>
-      <input type="password" name="password-confirmation" v-model="passwordConfirmation" placeholder="Password Confirmation" v-on:keydown.prevent="resetForm">
+      <input type="password" name="password-confirmation" v-model="passwordConfirmation" placeholder="Password Confirmation" v-on:keydown="resetForm">
       <span class="error-message" v-if="passwordConfirmationIsInvalid">Passwords Do Not Match</span>
     </div>
     <button type="submit">Submit</button>

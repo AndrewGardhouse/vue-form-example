@@ -180,16 +180,6 @@ describe('SignUpForm.vue', () => {
       expect(signUpForm.find('.form-submit-error').exists()).toBe(true)
     })
 
-    test('input keydown event triggers resetForm()', () => {
-      const nameInput = signUpForm.find('.form-input.name > input')
-      const resetFormMock = jest.fn()
-
-      signUpForm.vm.resetForm = resetFormMock
-      nameInput.trigger('keydown')
-
-      expect(resetFormMock.mock.calls.length).toBe(1)
-    })
-
     test('resetForm() is triggered on input change', () => {
       const nameInput = signUpForm.find('.form-input.name > input')
 
