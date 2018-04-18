@@ -166,5 +166,41 @@ describe('SignUpForm.vue', () => {
       signUpFormElement.trigger('submit')
       expect(submitFormMock.mock.calls.length).toBe(1)
     })
+
+    test('Form error message shows if form has invalid fields', () => {
+      signUpForm.vm.name = 'ab'
+      signUpForm.vm.email = 'invalid.email@123,456'
+      signUpForm.vm.phoneNumber = '123-12345'
+      signUpForm.vm.password = 'inValidPassword'
+      signUpForm.vm.passwordConfirmation = 'inValidPasswords'
+
+      signUpFormElement.trigger('submit')
+
+      expect(signUpForm.vm.showFormError).toBe(true)
+      expect(signUpForm.find('.form-submit-error').exists()).toBe(true)
+    })
+
+    test('input keydown event triggers resetForm()', () => {
+      const nameInput = signUpForm.find('.form-input.name > input')
+      const resetFormMock = jest.fn()
+
+      signUpForm.vm.resetForm = resetFormMock
+      nameInput.trigger('keydown')
+
+      expect(resetFormMock.mock.calls.length).toBe(1)
+    })
+
+    test('resetForm() is triggered on input change', () => {
+      const nameInput = signUpForm.find('.form-input.name > input')
+
+      signUpFormElement.trigger('submit')
+      expect(signUpForm.vm.showFormError).toBe(true)
+      expect(signUpForm.find('.form-submit-error').exists()).toBe(true)
+
+      nameInput.trigger('keydown')
+
+      expect(signUpForm.vm.showFormError).toBe(false)
+      expect(signUpForm.find('.form-submit-error').exists()).toBe(false)
+    })
   })
 })
