@@ -3,17 +3,17 @@
     <div class="form-input name" v-bind:class="{ 'invalid': nameIsInvalid }">
       <label for="name">Name</label>
       <input type="text" v-model="name" placeholder="Name">
-      <span v-show="nameIsInvalid">Invalid Name</span>
+      <span class="error-message" v-if="nameIsInvalid">Invalid Name</span>
     </div>
     <div class="form-input email" v-bind:class="{ 'invalid': emailIsInvalid }">
       <label for="email">Email</label>
       <input type="email" name="email" v-model="email" placeholder="Email">
-      <span v-show="emailIsInvalid">Invalid Email</span>
+      <span class="error-message" v-if="emailIsInvalid">Invalid Email</span>
     </div>
     <div class="form-input phonenumber" v-bind:class="{ 'invalid': phoneNumberIsInvalid }">
       <label for="phoneNumber">Phonenumber</label>
       <input type="phonenumber" name="phonenumber" v-model="phoneNumber" placeholder="Phonenumber">
-      <span v-show="phoneNumberIsInvalid">Invalid Phone Number</span>
+      <span class="error-message" v-if="phoneNumberIsInvalid">Invalid Phone Number</span>
     </div>
     <div class="form-input password" v-bind:class="{ 'invalid': passwordIsInvalid }">
       <label for="password">
@@ -22,14 +22,17 @@
         <small>* password must contain 8 characters, 1 uppercase character, 1 lowercase character, 1 number, and one special character</small>
       </label>
       <input type="password" name="password" v-model="password" placeholder="Password">
-      <span v-show="passwordIsInvalid">Invalid Password</span>
+      <span class="error-message" v-if="passwordIsInvalid">Invalid Password</span>
     </div>
     <div class="form-input password-confirmation" v-bind:class="{ 'invalid': passwordConfirmationIsInvalid }">
       <label for="passwordConfirmation">Password Confirmation</label>
       <input type="password" name="password-confirmation" v-model="passwordConfirmation" placeholder="Password Confirmation">
-      <span v-show="passwordConfirmationIsInvalid">Passwords Do Not Match</span>
+      <span class="error-message" v-if="passwordConfirmationIsInvalid">Passwords Do Not Match</span>
     </div>
     <button type="submit">Submit</button>
+    <div class="form-submit-error" v-if="showFormError">
+      <p>Fix errors before submitting</p>
+    </div>
   </form>
 </template>
 
@@ -42,7 +45,8 @@ export default {
       email: '',
       password: '',
       passwordConfirmation: '',
-      formSubmitted: false
+      formSubmitted: false,
+      showFormError: false
     }
   },
   computed: {
@@ -94,7 +98,7 @@ export default {
       }
     }
   }
-  span {
+  span, .form-submit-error {
     color: red;
   }
 }
