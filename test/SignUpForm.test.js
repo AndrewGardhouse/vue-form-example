@@ -29,6 +29,12 @@ describe('SignUpForm.vue', () => {
 
       expect(nameInputWrapper.classes()).toContain('invalid')
     })
+
+    test('Name error message is displayed when name is invalid', () => {
+      signUpForm.vm.name = 'ab'
+
+      expect(signUpForm.find('.form-input.name > .error-message').exists()).toBe(true)
+    })
   })
 
   describe('Email Input Field', () => {
@@ -50,6 +56,12 @@ describe('SignUpForm.vue', () => {
       signUpForm.vm.email = 'invalid.email@123,456'
 
       expect(emailInputWrapper.classes()).toContain('invalid')
+    })
+
+    test('Email error message is displayed when email is invalid', () => {
+      signUpForm.vm.email = 'invalid.email@123,456'
+
+      expect(signUpForm.find('.form-input.email > .error-message').exists()).toBe(true)
     })
   })
 
@@ -73,6 +85,12 @@ describe('SignUpForm.vue', () => {
 
       expect(phoneNumberInputWrapper.classes()).toContain('invalid')
     })
+
+    test('Phone number error message is displayed when phone number is invalid', () => {
+      signUpForm.vm.phoneNumber = '123-12345'
+
+      expect(signUpForm.find('.form-input.phonenumber > .error-message').exists()).toBe(true)
+    })
   })
 
   describe('Password Input Field', () => {
@@ -95,6 +113,12 @@ describe('SignUpForm.vue', () => {
 
       expect(passwordInputWrapper.classes()).toContain('invalid')
     })
+
+    test('Password error message is displayed when password is invalid', () => {
+      signUpForm.vm.password = 'invalidpassword'
+
+      expect(signUpForm.find('.form-input.password > .error-message').exists()).toBe(true)
+    })
   })
 
   describe('Password Confirmation Input Field', () => {
@@ -112,13 +136,20 @@ describe('SignUpForm.vue', () => {
       expect(signUpForm.vm.passwordConfirmationIsInvalid).toBe(false)
     });
 
-    test('Password field wrapper has error class when passwordConfirmation field is invalid', () => {
+    test('Password confirmation field wrapper has error class when passwordConfirmation field is invalid', () => {
       const passwordConfirmationInputWrapper = signUpForm.find('.form-input.password-confirmation')
 
       signUpForm.vm.password = '1ValidPassword!'
       signUpForm.vm.passwordConfirmation = 'inValidPassword'
 
       expect(passwordConfirmationInputWrapper.classes()).toContain('invalid')
+    })
+
+    test('Password confirmation number error message is displayed when password confirmation is invalid', () => {
+      signUpForm.vm.password = '1ValidPassword!'
+      signUpForm.vm.passwordConfirmation = 'inValidPassword'
+
+      expect(signUpForm.find('.form-input.password-confirmation > .error-message').exists()).toBe(true)
     })
   })
 
