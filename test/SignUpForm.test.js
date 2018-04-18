@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { shallow } from '@vue/test-utils'
 import SignUpForm from '../src/components/SignUpForm.vue'
 
 
@@ -6,7 +6,7 @@ describe('SignUpForm.vue', () => {
   let signUpForm
 
   beforeEach(() => {
-    signUpForm = mount(SignUpForm)
+    signUpForm = shallow(SignUpForm)
   })
 
   describe('Name Input Field', () => {
@@ -119,6 +119,21 @@ describe('SignUpForm.vue', () => {
       signUpForm.vm.passwordConfirmation = 'inValidPassword'
 
       expect(passwordConfirmationInputWrapper.classes()).toContain('invalid')
+    })
+  })
+
+  describe('Form Submission', () => {
+    let signUpFormElement
+
+    beforeEach(() => {
+      signUpFormElement = signUpForm.find('form')
+    })
+
+    test('Form submit triggers sumbmitForm()', () => {
+      const submitFormMock = jest.fn()
+      signUpForm.vm.submitForm = submitFormMock
+      signUpFormElement.trigger('submit')
+      expect(submitFormMock.mock.calls.length).toBe(1)
     })
   })
 })
