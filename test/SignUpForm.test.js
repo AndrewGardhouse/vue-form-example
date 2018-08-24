@@ -139,15 +139,15 @@ describe('SignUpForm.vue', () => {
     test('Password confirmation field wrapper has error class when passwordConfirmation field is invalid', () => {
       const passwordConfirmationInputWrapper = signUpForm.find('.form-input.password-confirmation')
 
-      signUpForm.vm.password = '1ValidPassword!'
       signUpForm.vm.passwordConfirmation = 'inValidPassword'
+      signUpForm.vm.password = '1ValidPassword!'
 
       expect(passwordConfirmationInputWrapper.classes()).toContain('invalid')
     })
 
     test('Password confirmation number error message is displayed when password confirmation is invalid', () => {
-      signUpForm.vm.password = '1ValidPassword!'
       signUpForm.vm.passwordConfirmation = 'inValidPassword'
+      signUpForm.vm.password = '1ValidPassword!'
 
       expect(signUpForm.find('.form-input.password-confirmation > .error-message').exists()).toBe(true)
     })
