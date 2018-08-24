@@ -1,4 +1,4 @@
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import SignUpForm from '../src/components/SignUpForm.vue'
 
 
@@ -6,7 +6,7 @@ describe('SignUpForm.vue', () => {
   let signUpForm
 
   beforeEach(() => {
-    signUpForm = shallow(SignUpForm)
+    signUpForm = shallowMount(SignUpForm)
   })
 
   describe('Name Input Field', () => {
